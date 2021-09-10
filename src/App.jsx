@@ -42,9 +42,11 @@ const App = () => {
             filteredList = pokeList;   
         }
         else{
-            filteredList = pokeList.filter(pokemon => pokemon.name === userInput);
+            filteredList = pokeList.filter(pokemon => 
+                pokemon.name?.toUpperCase() === userInput?.toUpperCase() || pokemon.type[0]?.toUpperCase() === userInput?.toUpperCase() || pokemon.type[1]?.toUpperCase() === userInput?.toUpperCase());
         }
-        setFilteredResults(filteredList);
+        setFilteredResults(filteredList.slice(0,4));
+        
 
     }
 
