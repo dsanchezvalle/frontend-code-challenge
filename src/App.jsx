@@ -9,15 +9,18 @@ const App = () => {
     const [pokeList, setPokeList] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     
     //Effect to fetch Pokemon Data
     useEffect(()=>{
         let getPokemonList = async()=>{
             try{
+                setIsLoading(true);
                 let fetchedData = await fetch("https://raw.githubusercontent.com/joseluisq/pokemons/master/pokemons.json");
                 let response = await fetchedData.json();
                 let itemList = response.results;
                 console.log(itemList);
+                setIsLoading(false);
                 setPokeList(itemList); 
              }
              catch(err){
@@ -46,8 +49,6 @@ const App = () => {
                 pokemon.name?.toUpperCase() === userInput?.toUpperCase() || pokemon.type[0]?.toUpperCase() === userInput?.toUpperCase() || pokemon.type[1]?.toUpperCase() === userInput?.toUpperCase());
         }
         setFilteredResults(filteredList.slice(0,4));
-        
-
     }
 
  return (
@@ -65,7 +66,7 @@ const App = () => {
         value={userInput}
         onChange={(e)=>setUserInput(e.target.value)} 
     />
-    <div className="loader"></div>
+    {isLoading&&<div className="loader"></div>}
     <ul className="suggestions">
 
     {filteredResults.map(pokemon => {
