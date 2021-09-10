@@ -72,10 +72,8 @@ const App = () => {
                 <li>
                     <img src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" alt="" />
                     <div className="info">
-                    <h1>
-                    <span className="hl">Pika</span>chu</h1>
-                    <span className="type electric">Electric</span>
-                    <span className="type normal">Normal</span>
+                    <h1>{pokemon.name}</h1>
+                        {pokemon.type.map(type => <span className="type electric">{type}</span>)}
                     </div>
                 </li>
                 </>
