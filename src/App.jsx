@@ -6,6 +6,7 @@ import './App.css';
 const URL_PATH = "https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json";
 
 const App = () => {
+    //States
     const [pokeList, setPokeList] = useState([]);
     const [userInput, setUserInput] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
@@ -19,7 +20,6 @@ const App = () => {
                 let fetchedData = await fetch("https://raw.githubusercontent.com/joseluisq/pokemons/master/pokemons.json");
                 let response = await fetchedData.json();
                 let itemList = response.results;
-                console.log(itemList);
                 setIsLoading(false);
                 setPokeList(itemList); 
              }
@@ -37,10 +37,7 @@ const App = () => {
 
     //Filter PokemonList by Name or Type
     function filterPokemonList() {
-        console.log(pokeList);
         let filteredList = [];
-        //let filteredList2 = [];
-        console.log(userInput);
         if(userInput.length === 0){
             filteredList = pokeList;   
         }
@@ -83,23 +80,20 @@ const App = () => {
                 )
                 
             })}
-
-        {filteredResults.length === 0 && (
-            <li>
-            <img src="https://cyndiquil721.files.wordpress.com/2014/02/missingno.png" alt="" />
-            <div className="info">
-                <h1 className="no-results">
-                    No results
-                </h1>
-            </div>
-        </li>
-        )}       
+    {filteredResults.length === 0 && (
+        <li>
+        <img src="https://cyndiquil721.files.wordpress.com/2014/02/missingno.png" alt="" />
+        <div className="info">
+            <h1 className="no-results">
+                No results
+            </h1>
+        </div>
+    </li>
+    )}       
         
     </ul>
    </>
 )   
 }
-
-
 
 export default App;
