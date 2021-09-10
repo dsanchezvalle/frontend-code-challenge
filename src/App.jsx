@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 //Modules
 import './App.css';
 //Constants
-const URL_PATH = "https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json";
+const URL_PATH = "https://raw.githubusercontent.com/joseluisq/pokemons/master/pokemons.json";
 
 const App = () => {
     //States
@@ -17,7 +17,7 @@ const App = () => {
         let getPokemonList = async()=>{
             try{
                 setIsLoading(true);
-                let fetchedData = await fetch("https://raw.githubusercontent.com/joseluisq/pokemons/master/pokemons.json");
+                let fetchedData = await fetch(URL_PATH);
                 let response = await fetchedData.json();
                 let itemList = response.results;
                 setIsLoading(false);
