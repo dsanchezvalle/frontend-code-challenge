@@ -70,7 +70,7 @@ const App = () => {
                 return (
                     <>
                 <li>
-                    <img src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" alt="" />
+                    <img src={pokemon.sprites.animated} alt="" />
                     <div className="info">
                     <h1>{pokemon.name}</h1>
                         {pokemon.type.map(type => <span className="type electric">{type}</span>)}
